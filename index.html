@@ -1,0 +1,221 @@
+```html
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<meta name="theme-color"
+content="#c40000">
+
+<title>Cupom Meu Pratinho</title>
+
+<link rel="preconnect"
+href="https://fonts.googleapis.com">
+
+<link rel="preconnect"
+href="https://fonts.gstatic.com"
+crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Poppins:wght@400;500;600;700&display=swap"
+rel="stylesheet">
+
+<link rel="stylesheet"
+href="style.css">
+
+</head>
+
+<body>
+
+<header>
+
+    <img
+        src="logo.png"
+        class="logo"
+        alt="Meu Pratinho">
+
+    <div class="subtitulo">
+        🎁 Tente a sorte!
+    </div>
+
+</header>
+
+
+<main class="container">
+
+    <!-- CARD DO JOGO -->
+
+    <section class="card jogo-card">
+
+        <h2>🔢 Digite seu número</h2>
+
+        <p class="descricao">
+            Digite um dos números abaixo e descubra
+            se você ganhou seu desconto!
+        </p>
+
+        <div class="numeros">
+
+            <div class="numero">07</div>
+            <div class="numero">13</div>
+            <div class="numero">66</div>
+
+        </div>
+
+        <input
+            type="text"
+            id="numero"
+            inputmode="numeric"
+            maxlength="2"
+            placeholder="Digite o número"
+            autocomplete="off"
+        >
+
+        <span
+            id="erro"
+            class="erro">
+        </span>
+
+        <button
+            id="btnVerificar"
+            onclick="verificarNumero()">
+
+            🎁 VERIFICAR MEU PRÊMIO
+
+        </button>
+
+        <p class="obs">
+            Digite apenas um número de 2 algarismos.
+        </p>
+
+    </section>
+
+
+    <!-- RESULTADO -->
+
+    <section
+        id="resultado"
+        class="resultado">
+
+        <div class="premio-card">
+
+            <div class="confetes">
+                🎉 🎊 🎉
+            </div>
+
+            <div class="parabens">
+                PARABÉNS!
+            </div>
+
+            <div class="ganhou">
+                VOCÊ GANHOU
+            </div>
+
+            <div class="valor">
+                R$ 1,00
+            </div>
+
+            <div class="desconto">
+                DE DESCONTO
+            </div>
+
+            <div class="linha"></div>
+
+            <p>
+                Apresente este cupom na sua próxima
+                compra no <strong>MEU PRATINHO</strong>.
+            </p>
+
+            <div class="cupom-area">
+
+                <canvas
+                    id="cupomCanvas">
+                </canvas>
+
+            </div>
+
+            <button
+                onclick="baixarCupom()">
+
+                📥 BAIXAR CUPOM
+
+            </button>
+
+            <button
+                class="whatsapp"
+                onclick="enviarWhatsApp()">
+
+                📲 ENVIAR CUPOM NO WHATSAPP
+
+            </button>
+
+            <button
+                class="novo"
+                onclick="novoJogo()">
+
+                🔄 TENTAR NOVAMENTE
+
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- MENSAGEM DE ERRO -->
+
+    <section
+        id="naoGanhou"
+        class="nao-ganhou">
+
+        <div class="card">
+
+            <div class="emoji">
+                😢
+            </div>
+
+            <h2>
+                Dessa vez não foi!
+            </h2>
+
+            <p>
+                Mas não desanime.
+                Você pode tentar novamente!
+            </p>
+
+            <button
+                onclick="novoJogo()">
+
+                🔄 TENTAR NOVAMENTE
+
+            </button>
+
+        </div>
+
+    </section>
+
+
+</main>
+
+
+<footer>
+
+    <strong>MEU PRATINHO</strong>
+
+    <br>
+
+    O melhor sabor pertinho de você! ❤️
+
+</footer>
+
+
+<script src="script.js"></script>
+
+</body>
+
+</html>
+```
