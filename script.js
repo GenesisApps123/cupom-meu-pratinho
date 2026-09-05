@@ -3,125 +3,92 @@
    CONFIGURAÇÕES
 ========================================= */
 
-const NUMEROS_VALIDOS = [
-
-    "07",
-    "13",
-    "66"
-
-];
+const NUMEROS_VALIDOS = ["07", "13", "66"];
 
 const WHATSAPP = "5588996444527";
-
-const VALOR_DESCONTO = "R$ 1,00";
-
-
-/* =========================================
-   ELEMENTOS
-========================================= */
-
-const campoNumero =
-    document.getElementById("numero");
-
-const erro =
-    document.getElementById("erro");
-
-const resultado =
-    document.getElementById("resultado");
-
-const naoGanhou =
-    document.getElementById("naoGanhou");
-
-const canvas =
-    document.getElementById("cupomCanvas");
-
-
-/* =========================================
-   GERA CÓDIGO DO CUPOM
-========================================= */
-
-function gerarCodigoCupom(numero){
-
-    const aleatorio =
-        Math.floor(
-            1000 +
-            Math.random() * 9000
-        );
-
-    return "MP-" + numero + "-" + aleatorio;
-
-}
 
 
 /* =========================================
    VERIFICAR NÚMERO
 ========================================= */
 
-function verificarNumero(){
+function verificarNumero() {
 
-    let numero =
-        campoNumero.value.trim();
+    const campo = document.getElementById("numero");
+    const erro = document.getElementById("erro");
 
-    /* Remove tudo que não for número */
+    const resultado = document.getElementById("resultado");
+    const naoGanhou = document.getElementById("naoGanhou");
 
-    numero =
-        numero.replace(/\D/g, "");
+    const jogo = document.querySelector(".jogo-card");
 
-    campoNumero.value = numero;
+    let numero = campo.value.trim();
 
+    /* Remove caracteres que não sejam números */
+    numero = numero.replace(/\D/g, "");
 
-    /* LIMPA ERRO */
+    campo.value = numero;
 
+    /* Limpa mensagens anteriores */
     erro.textContent = "";
+    campo.classList.remove("input-erro");
 
-    campoNumero.classList.remove(
-        "input-erro"
-    );
+    /* Campo vazio */
+    if (numero === "") {
 
+        erro.textContent = "Digite um número.";
 
-    /* CAMPO VAZIO */
-
-    if(numero === ""){
-
-        erro.textContent =
-            "Digite um número.";
-
-        campoNumero.classList.add(
-            "input-erro"
-        );
+        campo.classList.add("input-erro");
 
         return;
-
     }
 
+    /* Corrige números com apenas 1 algarismo */
+    if (numero.length === 1) {
 
-    /* VERIFICA TAMANHO */
+        numero = "0" + numero;
 
-    if(numero.length !== 2){
+        campo.value = numero;
+    }
+
+    /* Verifica tamanho */
+    if (numero.length !== 2) {
 
         erro.textContent =
             "Digite um número com 2 algarismos.";
 
-        campoNumero.classList.add(
-            "input-erro"
-        );
+        campo.classList.add("input-erro");
 
         return;
-
     }
 
 
-    /* VERIFICA SE É UM DOS PREMIADOS */
+    /* =========================================
+       NÚMERO PREMIADO
+    ========================================= */
 
-    if(
-        NUMEROS_VALIDOS.includes(numero)
-    ){
+    if (NUMEROS_VALIDOS.includes(numero)) {
 
-        ganhou(numero);
+        gerarPremio(numero);
 
-    }else{
+    }
 
-        perdeu();
+    /* =========================================
+       NÚMERO NÃO PREMIADO
+    ========================================= */
+
+    else {
+
+        jogo.style.display = "none";
+
+        resultado.style.display = "none";
+
+        naoGanhou.style.display = "block";
+
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
 
     }
 
@@ -129,16 +96,27 @@ function verificarNumero(){
 
 
 /* =========================================
-   GANHOU
+   GERAR PRÊMIO
 ========================================= */
 
-function ganhou(numero){
+function gerarPremio(numero) {
+
+    const jogo = document.querySelector(".jogo-card");
+
+    const resultado = document.getElementById("resultado");
+
+    const naoGanhou = document.getElementById("naoGanhou");
+
+    /* Código único */
+
+    const aleatorio =
+        Math.floor(1000 + Math.random() * 9000);
 
     const codigo =
-        gerarCodigoCupom(numero);
+        "MP-" + numero + "-" + aleatorio;
 
 
-    /* Guarda o cupom atual */
+    /* Salva o cupom */
 
     localStorage.setItem(
         "cupomMeuPratinho",
@@ -146,70 +124,54 @@ function ganhou(numero){
     );
 
 
-    /* Esconde jogo */
+    /* Esconde tela inicial */
 
-    document.querySelector(".jogo-card")
-        .style.display = "none";
-
+    jogo.style.display = "none";
 
     naoGanhou.style.display = "none";
+
+    /* Mostra prêmio */
 
     resultado.style.display = "block";
 
 
     /* Gera imagem */
 
-    gerarImagemCupom(
-        numero,
-        codigo
-    );
+    gerarImagemCupom(numero, codigo);
 
 
-    /* Rola até o resultado */
+    /* Vai para o resultado */
 
-    setTimeout(function(){
+    setTimeout(function () {
 
         resultado.scrollIntoView({
-            behavior:"smooth",
-            block:"start"
+            behavior: "smooth",
+            block: "start"
         });
 
-    },100);
+    }, 100);
 
 }
 
 
 /* =========================================
-   PERDEU
+   GERAR IMAGEM DO CUPOM
 ========================================= */
 
-function perdeu(){
+function gerarImagemCupom(numero, codigo) {
 
-    document.querySelector(".jogo-card")
-        .style.display = "none";
+    const canvas =
+        document.getElementById("cupomCanvas");
 
-    resultado.style.display = "none";
+    if (!canvas) {
 
-    naoGanhou.style.display = "block";
+        console.error(
+            "Canvas do cupom não encontrado."
+        );
 
+        return;
+    }
 
-    setTimeout(function(){
-
-        naoGanhou.scrollIntoView({
-            behavior:"smooth",
-            block:"start"
-        });
-
-    },100);
-
-}
-
-
-/* =========================================
-   GERAR CUPOM COMO IMAGEM
-========================================= */
-
-function gerarImagemCupom(numero, codigo){
 
     const ctx =
         canvas.getContext("2d");
@@ -225,7 +187,7 @@ function gerarImagemCupom(numero, codigo){
     canvas.height = altura;
 
 
-    /* FUNDO */
+    /* Fundo */
 
     ctx.fillStyle = "#ffffff";
 
@@ -237,7 +199,7 @@ function gerarImagemCupom(numero, codigo){
     );
 
 
-    /* BORDA */
+    /* Borda */
 
     ctx.strokeStyle = "#c40000";
 
@@ -251,7 +213,7 @@ function gerarImagemCupom(numero, codigo){
     );
 
 
-    /* FAIXA SUPERIOR */
+    /* Cabeçalho */
 
     ctx.fillStyle = "#c40000";
 
@@ -263,7 +225,7 @@ function gerarImagemCupom(numero, codigo){
     );
 
 
-    /* TÍTULO */
+    /* Logo textual */
 
     ctx.fillStyle = "#ffffff";
 
@@ -279,7 +241,7 @@ function gerarImagemCupom(numero, codigo){
     );
 
 
-    /* PARABÉNS */
+    /* Parabéns */
 
     ctx.fillStyle = "#c40000";
 
@@ -293,7 +255,7 @@ function gerarImagemCupom(numero, codigo){
     );
 
 
-    /* GANHOU */
+    /* Ganhou */
 
     ctx.fillStyle = "#333333";
 
@@ -307,7 +269,7 @@ function gerarImagemCupom(numero, codigo){
     );
 
 
-    /* VALOR */
+    /* Valor */
 
     ctx.fillStyle = "#c40000";
 
@@ -321,7 +283,7 @@ function gerarImagemCupom(numero, codigo){
     );
 
 
-    /* DESCONTO */
+    /* Desconto */
 
     ctx.fillStyle = "#333333";
 
@@ -335,7 +297,7 @@ function gerarImagemCupom(numero, codigo){
     );
 
 
-    /* LINHA */
+    /* Linha amarela */
 
     ctx.strokeStyle = "#ffcc00";
 
@@ -350,7 +312,7 @@ function gerarImagemCupom(numero, codigo){
     ctx.stroke();
 
 
-    /* CÓDIGO */
+    /* Código */
 
     ctx.fillStyle = "#333333";
 
@@ -364,7 +326,7 @@ function gerarImagemCupom(numero, codigo){
     );
 
 
-    /* NÚMERO PREMIADO */
+    /* Número */
 
     ctx.font =
         "24px Arial";
@@ -378,7 +340,7 @@ function gerarImagemCupom(numero, codigo){
     );
 
 
-    /* RODAPÉ */
+    /* Rodapé */
 
     ctx.fillStyle = "#c40000";
 
@@ -398,16 +360,30 @@ function gerarImagemCupom(numero, codigo){
    BAIXAR CUPOM
 ========================================= */
 
-function baixarCupom(){
+function baixarCupom() {
+
+    const canvas =
+        document.getElementById("cupomCanvas");
+
+    if (!canvas) {
+
+        alert("Cupom não encontrado.");
+
+        return;
+    }
+
 
     const link =
         document.createElement("a");
 
+
     link.download =
         "cupom-meu-pratinho.png";
 
+
     link.href =
         canvas.toDataURL("image/png");
+
 
     link.click();
 
@@ -415,10 +391,10 @@ function baixarCupom(){
 
 
 /* =========================================
-   ENVIAR PELO WHATSAPP
+   WHATSAPP
 ========================================= */
 
-async function enviarWhatsApp(){
+async function enviarWhatsApp() {
 
     const codigo =
         localStorage.getItem(
@@ -426,116 +402,96 @@ async function enviarWhatsApp(){
         );
 
 
-    if(!codigo){
+    if (!codigo) {
 
         alert(
             "Cupom não encontrado."
         );
 
         return;
-
     }
 
 
     const mensagem =
         "🎉 PARABÉNS! 🎉\n\n" +
-
-        "Ganhei um cupom de " +
-        "R$ 1,00 de desconto no " +
-        "MEU PRATINHO! 🍱❤️\n\n" +
-
-        "🎟️ Cupom: " +
-        codigo +
+        "Ganhei um cupom de R$ 1,00 de desconto " +
+        "no MEU PRATINHO! 🍱❤️\n\n" +
+        "🎟️ Cupom: " + codigo +
         "\n\n" +
-
         "Vou utilizar esse cupom em uma compra. 😊";
 
 
-    /*
-       Tenta compartilhar a imagem
-       diretamente pelo celular.
-    */
-
-    try{
-
-        canvas.toBlob(async function(blob){
-
-            if(!blob){
-
-                abrirWhatsApp(mensagem);
-
-                return;
-
-            }
+    const canvas =
+        document.getElementById("cupomCanvas");
 
 
-            const arquivo =
-                new File(
-                    [blob],
-                    "cupom-meu-pratinho.png",
-                    {
-                        type:"image/png"
+    /* Tenta compartilhar a imagem */
+
+    if (
+        navigator.share &&
+        navigator.canShare
+    ) {
+
+        try {
+
+            canvas.toBlob(
+                async function (blob) {
+
+                    const arquivo =
+                        new File(
+                            [blob],
+                            "cupom-meu-pratinho.png",
+                            {
+                                type: "image/png"
+                            }
+                        );
+
+
+                    if (
+                        navigator.canShare({
+                            files: [arquivo]
+                        })
+                    ) {
+
+                        await navigator.share({
+
+                            files: [arquivo],
+
+                            title:
+                                "Cupom Meu Pratinho",
+
+                            text:
+                                mensagem
+
+                        });
+
+                        return;
                     }
-                );
 
 
-            /*
-               Se o aparelho/navegador
-               permitir compartilhamento
-               de arquivos.
-            */
+                    abrirWhatsApp(mensagem);
 
-            if(
-                navigator.share &&
-                navigator.canShare &&
-                navigator.canShare({
-                    files:[arquivo]
-                })
-            ){
-
-                try{
-
-                    await navigator.share({
-
-                        files:[arquivo],
-
-                        title:
-                            "Cupom Meu Pratinho",
-
-                        text:
-                            mensagem
-
-                    });
-
-                    return;
-
-                }catch(error){
-
-                    /*
-                       Usuário cancelou ou
-                       navegador não permitiu.
-                    */
-
-                }
-
-            }
+                },
+                "image/png"
+            );
 
 
-            /*
-               Alternativa:
-               abre WhatsApp com mensagem.
-            */
+            return;
 
-            abrirWhatsApp(mensagem);
+        } catch (e) {
 
-        },"image/png");
+            console.log(
+                "Compartilhamento não disponível."
+            );
 
-
-    }catch(error){
-
-        abrirWhatsApp(mensagem);
+        }
 
     }
+
+
+    /* Alternativa */
+
+    abrirWhatsApp(mensagem);
 
 }
 
@@ -544,7 +500,7 @@ async function enviarWhatsApp(){
    ABRIR WHATSAPP
 ========================================= */
 
-function abrirWhatsApp(mensagem){
+function abrirWhatsApp(mensagem) {
 
     const url =
         "https://wa.me/" +
@@ -565,20 +521,34 @@ function abrirWhatsApp(mensagem){
    NOVO JOGO
 ========================================= */
 
-function novoJogo(){
+function novoJogo() {
 
-    campoNumero.value = "";
+    const campo =
+        document.getElementById("numero");
+
+    const erro =
+        document.getElementById("erro");
+
+    const resultado =
+        document.getElementById("resultado");
+
+    const naoGanhou =
+        document.getElementById("naoGanhou");
+
+    const jogo =
+        document.querySelector(".jogo-card");
+
+
+    campo.value = "";
 
     erro.textContent = "";
 
-    campoNumero.classList.remove(
+    campo.classList.remove(
         "input-erro"
     );
 
 
-    document.querySelector(".jogo-card")
-        .style.display = "block";
-
+    jogo.style.display = "block";
 
     resultado.style.display = "none";
 
@@ -587,9 +557,9 @@ function novoJogo(){
 
     window.scrollTo({
 
-        top:0,
+        top: 0,
 
-        behavior:"smooth"
+        behavior: "smooth"
 
     });
 
@@ -597,35 +567,54 @@ function novoJogo(){
 
 
 /* =========================================
-   PERMITIR ENTER
+   ENTER
 ========================================= */
 
-campoNumero.addEventListener(
-    "keydown",
-    function(event){
+document.addEventListener(
+    "DOMContentLoaded",
+    function () {
 
-        if(event.key === "Enter"){
+        const campo =
+            document.getElementById("numero");
 
-            verificarNumero();
 
+        if (!campo) {
+
+            console.error(
+                "Campo numero não encontrado."
+            );
+
+            return;
         }
 
-    }
-);
+
+        campo.addEventListener(
+            "keydown",
+            function (event) {
+
+                if (
+                    event.key === "Enter"
+                ) {
+
+                    verificarNumero();
+
+                }
+
+            }
+        );
 
 
-/* =========================================
-   ACEITAR SOMENTE NÚMEROS
-========================================= */
+        campo.addEventListener(
+            "input",
+            function () {
 
-campoNumero.addEventListener(
-    "input",
-    function(){
+                this.value =
+                    this.value
+                    .replace(/\D/g, "")
+                    .slice(0, 2);
 
-        this.value =
-            this.value
-            .replace(/\D/g,"")
-            .slice(0,2);
+            }
+        );
 
     }
 );
