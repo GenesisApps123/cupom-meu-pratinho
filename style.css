@@ -1,9 +1,13 @@
-```css
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
 }
+
+
+/* =========================================
+   BODY
+========================================= */
 
 body{
 
@@ -18,13 +22,15 @@ body{
 }
 
 
-/* HEADER */
+/* =========================================
+   HEADER
+========================================= */
 
 header{
 
     text-align:center;
 
-    padding:20px 10px;
+    padding:20px 10px 15px;
 
     color:white;
 
@@ -48,29 +54,37 @@ header{
 
     margin-top:10px;
 
-    font-family:'Baloo 2';
+    font-family:'Baloo 2',sans-serif;
 
     font-size:24px;
 
-    font-weight:700;
+    font-weight:800;
+
+    text-transform:uppercase;
 
 }
 
 
-/* CONTAINER */
+/* =========================================
+   CONTAINER
+========================================= */
 
 .container{
 
+    width:100%;
+
     max-width:500px;
 
-    margin:auto;
+    margin:0 auto;
 
     padding:15px;
 
 }
 
 
-/* CARD */
+/* =========================================
+   CARDS
+========================================= */
 
 .card{
 
@@ -83,17 +97,26 @@ header{
     margin-bottom:15px;
 
     box-shadow:
-        0 5px 18px rgba(0,0,0,0.12);
+        0 5px 15px rgba(0,0,0,0.12);
 
 }
 
+
+/* =========================================
+   TÍTULOS
+========================================= */
+
 h2{
 
-    font-family:'Baloo 2';
+    font-family:'Baloo 2',sans-serif;
 
     margin-bottom:10px;
 
     font-size:25px;
+
+    font-weight:800;
+
+    color:#333;
 
 }
 
@@ -103,18 +126,24 @@ h2{
 
     font-size:15px;
 
-    margin-bottom:15px;
+    line-height:1.5;
+
+    margin-bottom:18px;
 
 }
 
 
-/* NÚMEROS */
+/* =========================================
+   NÚMEROS PREMIADOS
+========================================= */
 
 .numeros{
 
     display:flex;
 
     gap:10px;
+
+    width:100%;
 
     margin-bottom:15px;
 
@@ -124,34 +153,41 @@ h2{
 
     flex:1;
 
-    background:#fff0c2;
+    background:#fff5c7;
 
     border:3px solid #ffcc00;
 
     color:#c40000;
 
-    font-family:'Baloo 2';
+    font-family:'Baloo 2',sans-serif;
 
-    font-size:28px;
+    font-size:29px;
 
     font-weight:800;
 
-    padding:10px;
+    padding:10px 5px;
 
     border-radius:15px;
 
     text-align:center;
 
+    box-shadow:
+        0 3px 8px rgba(0,0,0,0.06);
+
 }
 
 
-/* INPUT */
+/* =========================================
+   INPUT
+========================================= */
 
 input{
 
     width:100%;
 
-    padding:17px;
+    height:58px;
+
+    padding:15px;
 
     border:none;
 
@@ -159,15 +195,31 @@ input{
 
     margin-bottom:8px;
 
+    font-family:'Poppins',sans-serif;
+
     font-size:22px;
 
     outline:none;
 
-    background:#f5f5f5;
+    background:#f3f3f3;
 
     text-align:center;
 
     font-weight:700;
+
+    color:#333;
+
+    transition:0.2s;
+
+}
+
+input::placeholder{
+
+    color:#999;
+
+    font-size:16px;
+
+    font-weight:400;
 
 }
 
@@ -181,13 +233,38 @@ input:focus{
 }
 
 
-/* BOTÕES */
+/* =========================================
+   ERRO
+========================================= */
+
+.erro{
+
+    color:#c40000;
+
+    font-size:13px;
+
+    font-weight:600;
+
+    display:block;
+
+    min-height:20px;
+
+    text-align:center;
+
+}
+
+
+/* =========================================
+   BOTÕES
+========================================= */
 
 button{
 
     width:100%;
 
-    padding:18px;
+    min-height:58px;
+
+    padding:16px 15px;
 
     background:#ffcc00;
 
@@ -195,9 +272,11 @@ button{
 
     border-radius:16px;
 
+    font-family:'Poppins',sans-serif;
+
     font-size:19px;
 
-    font-weight:bold;
+    font-weight:800;
 
     cursor:pointer;
 
@@ -207,39 +286,30 @@ button{
 
     color:#333;
 
-}
-
-button:active{
-
-    transform:scale(0.98);
+    box-shadow:
+        0 4px 0 #dcae00;
 
 }
 
 button:hover{
 
-    filter:brightness(0.96);
+    filter:brightness(0.97);
+
+}
+
+button:active{
+
+    transform:translateY(3px);
+
+    box-shadow:
+        0 1px 0 #dcae00;
 
 }
 
 
-/* ERRO */
-
-.erro{
-
-    color:#c40000;
-
-    font-size:14px;
-
-    display:block;
-
-    min-height:20px;
-
-    font-weight:600;
-
-}
-
-
-/* OBSERVAÇÃO */
+/* =========================================
+   OBSERVAÇÃO
+========================================= */
 
 .obs{
 
@@ -247,14 +317,16 @@ button:hover{
 
     color:#777;
 
-    margin-top:10px;
+    margin-top:12px;
 
     text-align:center;
 
 }
 
 
-/* RESULTADO */
+/* =========================================
+   RESULTADO
+========================================= */
 
 .resultado{
 
@@ -265,7 +337,9 @@ button:hover{
 }
 
 
-/* CARTÃO DO CUPOM */
+/* =========================================
+   CARTÃO DO PRÊMIO
+========================================= */
 
 .premio-card{
 
@@ -287,44 +361,30 @@ button:hover{
 }
 
 
+/* =========================================
+   CONFETES
+========================================= */
+
 .confetes{
 
-    font-size:30px;
+    font-size:31px;
+
+    line-height:1;
 
     margin-bottom:5px;
 
 }
 
 
+/* =========================================
+   PARABÉNS
+========================================= */
+
 .parabens{
 
-    font-family:'Baloo 2';
+    font-family:'Baloo 2',sans-serif;
 
-    font-size:38px;
-
-    font-weight:800;
-
-    color:#c40000;
-
-}
-
-
-.ganhou{
-
-    font-size:18px;
-
-    font-weight:700;
-
-    margin-top:2px;
-
-}
-
-
-.valor{
-
-    font-family:'Baloo 2';
-
-    font-size:58px;
+    font-size:40px;
 
     line-height:1;
 
@@ -337,9 +397,55 @@ button:hover{
 }
 
 
+/* =========================================
+   VOCÊ GANHOU
+========================================= */
+
+.ganhou{
+
+    font-family:'Poppins',sans-serif;
+
+    font-size:18px;
+
+    font-weight:800;
+
+    margin-top:7px;
+
+    color:#333;
+
+}
+
+
+/* =========================================
+   VALOR
+========================================= */
+
+.valor{
+
+    font-family:'Baloo 2',sans-serif;
+
+    font-size:60px;
+
+    line-height:1;
+
+    font-weight:800;
+
+    color:#c40000;
+
+    margin-top:5px;
+
+}
+
+
+/* =========================================
+   DESCONTO
+========================================= */
+
 .desconto{
 
-    font-size:19px;
+    font-family:'Poppins',sans-serif;
+
+    font-size:18px;
 
     font-weight:800;
 
@@ -348,16 +454,28 @@ button:hover{
 }
 
 
+/* =========================================
+   LINHA
+========================================= */
+
 .linha{
+
+    width:90%;
 
     height:3px;
 
     background:#ffcc00;
 
-    margin:18px 0;
+    margin:18px auto;
+
+    border-radius:5px;
 
 }
 
+
+/* =========================================
+   TEXTO DO CUPOM
+========================================= */
 
 .premio-card p{
 
@@ -370,18 +488,21 @@ button:hover{
 }
 
 
-/* ÁREA DO CANVAS */
+/* =========================================
+   ÁREA DO CUPOM
+========================================= */
 
 .cupom-area{
 
-    margin-top:15px;
-
     width:100%;
+
+    margin-top:18px;
 
     overflow:hidden;
 
-}
+    border-radius:15px;
 
+}
 
 #cupomCanvas{
 
@@ -389,14 +510,16 @@ button:hover{
 
     height:auto;
 
-    border-radius:15px;
-
     display:block;
+
+    border-radius:15px;
 
 }
 
 
-/* WHATSAPP */
+/* =========================================
+   BOTÃO WHATSAPP
+========================================= */
 
 button.whatsapp{
 
@@ -404,23 +527,45 @@ button.whatsapp{
 
     color:white;
 
+    box-shadow:
+        0 4px 0 #1da851;
+
+}
+
+button.whatsapp:active{
+
+    box-shadow:
+        0 1px 0 #1da851;
+
 }
 
 
-/* NOVO JOGO */
+/* =========================================
+   BOTÃO NOVO JOGO
+========================================= */
 
 button.novo{
 
-    background:#eee;
+    background:#eeeeee;
 
     color:#555;
 
-    font-size:16px;
+    box-shadow:
+        0 4px 0 #cccccc;
+
+}
+
+button.novo:active{
+
+    box-shadow:
+        0 1px 0 #cccccc;
 
 }
 
 
-/* NÃO GANHOU */
+/* =========================================
+   NÃO GANHOU
+========================================= */
 
 .nao-ganhou{
 
@@ -434,12 +579,14 @@ button.novo{
 
     text-align:center;
 
+    padding:25px 20px;
+
 }
 
 
 .emoji{
 
-    font-size:55px;
+    font-size:58px;
 
     margin-bottom:5px;
 
@@ -450,6 +597,8 @@ button.novo{
 
     color:#c40000;
 
+    font-size:27px;
+
 }
 
 
@@ -457,10 +606,16 @@ button.novo{
 
     color:#666;
 
+    font-size:15px;
+
+    line-height:1.5;
+
 }
 
 
-/* FOOTER */
+/* =========================================
+   FOOTER
+========================================= */
 
 footer{
 
@@ -468,7 +623,7 @@ footer{
 
     text-align:center;
 
-    padding:25px 15px;
+    padding:25px 15px 35px;
 
     font-size:13px;
 
@@ -478,14 +633,18 @@ footer{
 
 footer strong{
 
-    font-family:'Baloo 2';
+    font-family:'Baloo 2',sans-serif;
 
-    font-size:18px;
+    font-size:19px;
+
+    font-weight:800;
 
 }
 
 
-/* ANIMAÇÃO */
+/* =========================================
+   ANIMAÇÃO
+========================================= */
 
 @keyframes aparecer{
 
@@ -508,28 +667,40 @@ footer strong{
 }
 
 
-/* TREMER */
+/* =========================================
+   ANIMAÇÃO DE ERRO
+========================================= */
 
 @keyframes tremer{
 
     0%{
+
         transform:translateX(0);
+
     }
 
     25%{
+
         transform:translateX(-5px);
+
     }
 
     50%{
+
         transform:translateX(5px);
+
     }
 
     75%{
+
         transform:translateX(-5px);
+
     }
 
     100%{
+
         transform:translateX(0);
+
     }
 
 }
@@ -543,9 +714,29 @@ footer strong{
 }
 
 
-/* CELULAR */
+/* =========================================
+   CELULAR
+========================================= */
 
 @media(max-width:500px){
+
+    header{
+
+        padding-top:18px;
+
+    }
+
+    .logo{
+
+        width:28%;
+
+    }
+
+    .subtitulo{
+
+        font-size:22px;
+
+    }
 
     .container{
 
@@ -553,15 +744,37 @@ footer strong{
 
     }
 
-    .parabens{
+    .card{
 
-        font-size:34px;
+        padding:18px;
+
+        border-radius:18px;
 
     }
 
-    .valor{
+    h2{
 
-        font-size:52px;
+        font-size:23px;
+
+    }
+
+    .descricao{
+
+        font-size:14px;
+
+    }
+
+    .numero{
+
+        font-size:27px;
+
+        padding:9px 4px;
+
+    }
+
+    input{
+
+        height:56px;
 
     }
 
@@ -569,7 +782,48 @@ footer strong{
 
         font-size:18px;
 
+        min-height:56px;
+
+    }
+
+    .parabens{
+
+        font-size:36px;
+
+    }
+
+    .valor{
+
+        font-size:54px;
+
     }
 
 }
-```
+
+
+/* =========================================
+   TELAS MUITO PEQUENAS
+========================================= */
+
+@media(max-width:350px){
+
+    .numero{
+
+        font-size:23px;
+
+    }
+
+    .parabens{
+
+        font-size:32px;
+
+    }
+
+    .valor{
+
+        font-size:48px;
+
+    }
+
+}
+
