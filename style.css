@@ -1,0 +1,575 @@
+```css
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+
+    background:#c40000;
+
+    font-family:'Poppins',sans-serif;
+
+    color:#333;
+
+    min-height:100vh;
+
+}
+
+
+/* HEADER */
+
+header{
+
+    text-align:center;
+
+    padding:20px 10px;
+
+    color:white;
+
+}
+
+.logo{
+
+    width:30%;
+
+    max-width:120px;
+
+    min-width:80px;
+
+    display:block;
+
+    margin:auto;
+
+}
+
+.subtitulo{
+
+    margin-top:10px;
+
+    font-family:'Baloo 2';
+
+    font-size:24px;
+
+    font-weight:700;
+
+}
+
+
+/* CONTAINER */
+
+.container{
+
+    max-width:500px;
+
+    margin:auto;
+
+    padding:15px;
+
+}
+
+
+/* CARD */
+
+.card{
+
+    background:white;
+
+    padding:20px;
+
+    border-radius:20px;
+
+    margin-bottom:15px;
+
+    box-shadow:
+        0 5px 18px rgba(0,0,0,0.12);
+
+}
+
+h2{
+
+    font-family:'Baloo 2';
+
+    margin-bottom:10px;
+
+    font-size:25px;
+
+}
+
+.descricao{
+
+    color:#666;
+
+    font-size:15px;
+
+    margin-bottom:15px;
+
+}
+
+
+/* NÚMEROS */
+
+.numeros{
+
+    display:flex;
+
+    gap:10px;
+
+    margin-bottom:15px;
+
+}
+
+.numero{
+
+    flex:1;
+
+    background:#fff0c2;
+
+    border:3px solid #ffcc00;
+
+    color:#c40000;
+
+    font-family:'Baloo 2';
+
+    font-size:28px;
+
+    font-weight:800;
+
+    padding:10px;
+
+    border-radius:15px;
+
+    text-align:center;
+
+}
+
+
+/* INPUT */
+
+input{
+
+    width:100%;
+
+    padding:17px;
+
+    border:none;
+
+    border-radius:14px;
+
+    margin-bottom:8px;
+
+    font-size:22px;
+
+    outline:none;
+
+    background:#f5f5f5;
+
+    text-align:center;
+
+    font-weight:700;
+
+}
+
+input:focus{
+
+    background:#fff;
+
+    box-shadow:
+        0 0 0 3px #ffcc00;
+
+}
+
+
+/* BOTÕES */
+
+button{
+
+    width:100%;
+
+    padding:18px;
+
+    background:#ffcc00;
+
+    border:none;
+
+    border-radius:16px;
+
+    font-size:19px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    transition:0.2s;
+
+    margin-top:12px;
+
+    color:#333;
+
+}
+
+button:active{
+
+    transform:scale(0.98);
+
+}
+
+button:hover{
+
+    filter:brightness(0.96);
+
+}
+
+
+/* ERRO */
+
+.erro{
+
+    color:#c40000;
+
+    font-size:14px;
+
+    display:block;
+
+    min-height:20px;
+
+    font-weight:600;
+
+}
+
+
+/* OBSERVAÇÃO */
+
+.obs{
+
+    font-size:13px;
+
+    color:#777;
+
+    margin-top:10px;
+
+    text-align:center;
+
+}
+
+
+/* RESULTADO */
+
+.resultado{
+
+    display:none;
+
+    animation:aparecer 0.5s ease;
+
+}
+
+
+/* CARTÃO DO CUPOM */
+
+.premio-card{
+
+    background:white;
+
+    padding:20px;
+
+    border-radius:25px;
+
+    text-align:center;
+
+    box-shadow:
+        0 8px 25px rgba(0,0,0,0.18);
+
+    position:relative;
+
+    overflow:hidden;
+
+}
+
+
+.confetes{
+
+    font-size:30px;
+
+    margin-bottom:5px;
+
+}
+
+
+.parabens{
+
+    font-family:'Baloo 2';
+
+    font-size:38px;
+
+    font-weight:800;
+
+    color:#c40000;
+
+}
+
+
+.ganhou{
+
+    font-size:18px;
+
+    font-weight:700;
+
+    margin-top:2px;
+
+}
+
+
+.valor{
+
+    font-family:'Baloo 2';
+
+    font-size:58px;
+
+    line-height:1;
+
+    font-weight:800;
+
+    color:#c40000;
+
+    margin-top:5px;
+
+}
+
+
+.desconto{
+
+    font-size:19px;
+
+    font-weight:800;
+
+    color:#333;
+
+}
+
+
+.linha{
+
+    height:3px;
+
+    background:#ffcc00;
+
+    margin:18px 0;
+
+}
+
+
+.premio-card p{
+
+    font-size:14px;
+
+    line-height:1.5;
+
+    color:#555;
+
+}
+
+
+/* ÁREA DO CANVAS */
+
+.cupom-area{
+
+    margin-top:15px;
+
+    width:100%;
+
+    overflow:hidden;
+
+}
+
+
+#cupomCanvas{
+
+    width:100%;
+
+    height:auto;
+
+    border-radius:15px;
+
+    display:block;
+
+}
+
+
+/* WHATSAPP */
+
+button.whatsapp{
+
+    background:#25D366;
+
+    color:white;
+
+}
+
+
+/* NOVO JOGO */
+
+button.novo{
+
+    background:#eee;
+
+    color:#555;
+
+    font-size:16px;
+
+}
+
+
+/* NÃO GANHOU */
+
+.nao-ganhou{
+
+    display:none;
+
+    animation:aparecer 0.5s ease;
+
+}
+
+.nao-ganhou .card{
+
+    text-align:center;
+
+}
+
+
+.emoji{
+
+    font-size:55px;
+
+    margin-bottom:5px;
+
+}
+
+
+.nao-ganhou h2{
+
+    color:#c40000;
+
+}
+
+
+.nao-ganhou p{
+
+    color:#666;
+
+}
+
+
+/* FOOTER */
+
+footer{
+
+    color:white;
+
+    text-align:center;
+
+    padding:25px 15px;
+
+    font-size:13px;
+
+    line-height:1.6;
+
+}
+
+footer strong{
+
+    font-family:'Baloo 2';
+
+    font-size:18px;
+
+}
+
+
+/* ANIMAÇÃO */
+
+@keyframes aparecer{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(20px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+
+/* TREMER */
+
+@keyframes tremer{
+
+    0%{
+        transform:translateX(0);
+    }
+
+    25%{
+        transform:translateX(-5px);
+    }
+
+    50%{
+        transform:translateX(5px);
+    }
+
+    75%{
+        transform:translateX(-5px);
+    }
+
+    100%{
+        transform:translateX(0);
+    }
+
+}
+
+.input-erro{
+
+    border:3px solid #ff4d4d !important;
+
+    animation:tremer 0.2s 2;
+
+}
+
+
+/* CELULAR */
+
+@media(max-width:500px){
+
+    .container{
+
+        padding:12px;
+
+    }
+
+    .parabens{
+
+        font-size:34px;
+
+    }
+
+    .valor{
+
+        font-size:52px;
+
+    }
+
+    button{
+
+        font-size:18px;
+
+    }
+
+}
+```
